@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_tracker/widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   final String npm = '23423432423'; // NPM
@@ -25,7 +26,9 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -91,11 +94,15 @@ class ItemCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: () {
+          // Show SnackBar when clicked
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("You have pressed the ${item.name} button!")),
-            );
+            ..showSnackBar(SnackBar(
+                content: Text("You pressed the ${item.name} button!")));
+
+          // Navigate to the appropriate route (depending on the button type)
+          if (item.name == "Add Mood") {
+          }
         },
         child: Container(
           padding: const EdgeInsets.all(8),
